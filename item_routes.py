@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify, request
 import os
-os.add_dll_directory('./db2cli/clidriver/bin')
+# os.add_dll_directory('./db2cli/clidriver/bin')
 import ibm_db
 from db_connection import get_db_connection
 

@@ -3,7 +3,7 @@ from flask import Flask
 from asset_routes import asset_bp
 from item_routes import item_bp
 
-os.add_dll_directory('./db2cli/clidriver/bin') 
+# os.add_dll_directory('./db2cli/clidriver/bin') 
 
 app = Flask(__name__)
 
