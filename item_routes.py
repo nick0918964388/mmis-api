@@ -35,7 +35,7 @@ def query_item():
     except Exception as e:
         return jsonify({"status": "error", "message": str(e)})
 
-@item_bp.route('/item/inventory', methods=['GET'])
+@item_bp.route('/item/invbalances', methods=['GET'])
 def query_inventory():
     try:
         itemnum = request.args.get('itemnum', '')
