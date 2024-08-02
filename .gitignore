@@ -1,0 +1,40 @@
+# 忽略 db2cli 目錄下的所有文件
+/db2cli/
+
+# 其他常見的 .gitignore 規則
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# 虛擬環境
+venv/
+env/
+ENV/
+
+# IDE 相關
+.vscode/
+.idea/
+
+# 操作系統生成的文件
+.DS_Store
+Thumbs.db
+
+# 日誌文件
+*.log
+
+# 包管理器
+pip-log.txt
+pip-delete-this-directory.txt
+
+# 單元測試/覆蓋率報告
+htmlcov/
+.tox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+.hypothesis/
