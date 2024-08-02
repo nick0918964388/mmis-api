@@ -38,3 +38,6 @@ nosetests.xml
 coverage.xml
 *.cover
 .hypothesis/
+
+Dockerfile
+docker-compose.yaml 
