@@ -1,5 +1,5 @@
 import os
-os.add_dll_directory('C:/Users/nickyin/clidriver/bin')
+# os.add_dll_directory('C:/Users/nickyin/clidriver/bin')
 import ibm_db
 
 # 設置DB2連接參數
