@@ -73,3 +73,19 @@ def query_transaction():
     params = [itemnum]
     result = execute_query(sql, params, limit=50)
     return jsonify(result)
+
+@item_bp.route('/item/storeroom', methods=['GET'])
+def query_inventory():
+    location = request.args.get('location', '')
+    
+    if not location:
+        return jsonify({"status": "error", "message": "location is required"}), 400
+    
+    sql = """
+    SELECT  location , description,ZZ_LOCGROUPNAME ,ZZ_SECTION
+    FROM maximo.locations 
+    WHERE type='STOREROOM' and location like ?
+    """
+    params = [f'%{location.lower()}%']    
+    result = execute_query(sql, params)
+    return jsonify(result)
