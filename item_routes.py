@@ -75,7 +75,7 @@ def query_transaction():
     return jsonify(result)
 
 @item_bp.route('/item/storeroom', methods=['GET'])
-def query_inventory():
+def query_storeroom():
     location = request.args.get('location', '')
     
     if not location:
