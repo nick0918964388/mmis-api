@@ -6,11 +6,17 @@ from db_connection import get_db_connection
 
 item_bp = Blueprint('item', __name__)
 
+
 def execute_query(sql, params, limit=None):
     try:
         conn = get_db_connection()
         if limit:
             sql += f" FETCH FIRST {limit} ROWS ONLY"
+        
+        # 打印SQL語句
+        print(f"執行的SQL語句: {sql}")
+        print(f"參數: {params}")
+        
         stmt = ibm_db.prepare(conn, sql)
         
         for i, param in enumerate(params, start=1):
@@ -28,8 +34,11 @@ def execute_query(sql, params, limit=None):
         
         return {"status": "success", "data": data}
     except Exception as e:
+        # 在發生錯誤時也打印SQL語句
+        print(f"執行錯誤的SQL語句: {sql}")
+        print(f"參數: {params}")
+        print(f"錯誤信息: {str(e)}")
         return {"status": "error", "message": str(e)}
-
 @item_bp.route('/item', methods=['GET'])
 def query_item():
     search_text = request.args.get('search', '')
@@ -84,7 +93,7 @@ def query_storeroom():
     sql = """
     SELECT  location , description,ZZ_LOCGROUPNAME ,ZZ_SECTION
     FROM maximo.locations 
-    WHERE type='STOREROOM' and location like ?
+    WHERE type='STOREROOM' and description like ?
     """
     params = [f'%{location.lower()}%']    
     result = execute_query(sql, params)
