@@ -93,7 +93,7 @@ def query_storeroom():
     sql = """
     SELECT  location , description,ZZ_LOCGROUPNAME ,ZZ_SECTION
     FROM maximo.locations 
-    WHERE type='STOREROOM' and description like ?
+    WHERE type='STOREROOM' and LOWER(description) like ?
     """
     params = [f'%{location.lower()}%']    
     result = execute_query(sql, params)
