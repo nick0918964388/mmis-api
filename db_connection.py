@@ -21,8 +21,8 @@ def get_db_connection():
     import cx_Oracle
 
     def connect_to_oracle():
-        dsn = cx_Oracle.makedsn(host, port, service_name=database)  # 使用相同的參數
-        connection = cx_Oracle.connect(user=username, password=password, dsn=dsn)
+        dsn = cx_Oracle.makedsn(host, port, sid=database)  # 使用SID而不是服務名稱
+        connection = cx_Oracle.connect(user=username, password=password, dsn=dsn, mode=cx_Oracle.SYSDBA)  # 使用SYSDBA模式
         return connection
 
     # 根據資料庫類型選擇連接方式
