@@ -6,7 +6,7 @@ from db_utils import execute_query
 
 gmp_asset_bp = Blueprint('gmp_asset', __name__)
 
-@gmp_asset_bp.route('/asset', methods=['GET'])
+@gmp_asset_bp.route('/gmp/asset', methods=['GET'])
 def query_asset():
     search_text = request.args.get('search', '')
     
