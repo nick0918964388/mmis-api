@@ -1,6 +1,6 @@
 import ibm_db
 from db_connection import get_db_connection
-
+import logging
 def execute_query(sql, params, limit=None):
     try:
         conn = get_db_connection()

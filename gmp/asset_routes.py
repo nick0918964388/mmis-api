@@ -17,7 +17,7 @@ def query_asset():
     """
     params = []
     
-    result = execute_query(sql, params, limit=10)
+    result = execute_query(sql, params)
     
     # 紀錄結果
     logging.info(f"Query result: {result}")  # 除錯輸出
