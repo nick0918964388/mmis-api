@@ -23,6 +23,7 @@ def connect_to_oracle():
             return connection
         
 def get_db_connection():
+    troubleshoot_oracle_connection()
     try:        
         # 根據資料庫類型選擇連接方式
         if db_type == 'oracle':
