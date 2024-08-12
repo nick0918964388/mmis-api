@@ -12,7 +12,7 @@ def query_person():
         conn = get_db_connection()
         
         sql = """
-        SELECT personid, displayname, status FROM maximo.person 
+        SELECT personid, displayname, status FROM maximo.person
         WHERE LOWER(displayname) LIKE ?
         FETCH FIRST 10 ROWS ONLY
         """
