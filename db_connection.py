@@ -46,9 +46,9 @@ def troubleshoot_oracle_connection():
     
     # 2. 嘗試建立 DSN
     try:
-        host = os.environ.get('ORACLE_HOST', 'localhost')
-        port = os.environ.get('ORACLE_PORT', '1521')
-        service_name = os.environ.get('ORACLE_SERVICE_NAME')
+        host = os.environ.get('HOST', 'localhost')
+        port = os.environ.get('PORT', '1521')
+        service_name = os.environ.get('DATABASE')
         dsn = cx_Oracle.makedsn(host, port, service_name=service_name)
         logging.info(f"DSN created successfully: {dsn}")
     except Exception as e:
@@ -57,8 +57,8 @@ def troubleshoot_oracle_connection():
     # 3. 嘗試連接
     try:
         connection = cx_Oracle.connect(
-            user=os.environ.get('ORACLE_USER'),
-            password=os.environ.get('ORACLE_PASSWORD'),
+            user=os.environ.get('USERNAME'),
+            password=os.environ.get('PASSWORD'),
             dsn=dsn,
             mode=cx_Oracle.SYSDBA
         )
