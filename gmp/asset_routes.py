@@ -4,7 +4,7 @@ import ibm_db
 from db_connection import get_db_connection
 from db_utils import execute_query
 
-gmp_asset_bp = Blueprint('asset', __name__)
+gmp_asset_bp = Blueprint('gmp_asset', __name__)
 
 @gmp_asset_bp.route('/asset', methods=['GET'])
 def query_asset():

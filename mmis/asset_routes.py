@@ -5,7 +5,7 @@ import ibm_db
 from db_connection import get_db_connection
 from db_utils import execute_query
 
-asset_bp = Blueprint('asset', __name__)
+asset_bp = Blueprint('mmis_asset', __name__)
 
 @asset_bp.route('/asset', methods=['GET'])
 def query_asset():
