@@ -7,3 +7,10 @@ services:
     ports:
       - "5000:5000"
     command: python main.py
+    environment:
+      - HOST=10.10.10.115
+      - PORT=50005
+      - DATABASE=MAXDB76
+      - USERNAME=maximo
+      - PASSWORD=maximo
+      - DB_TYPE=db2
