@@ -14,3 +14,17 @@ services:
       - USERNAME=maximo
       - PASSWORD=maximo
       - DB_TYPE=db2
+  app2:
+    build: .
+    volumes:
+      - .:/app
+    ports:
+      - "5001:5000"
+    command: python main.py
+    environment:
+      - HOST=10.10.10.131
+      - PORT=32298
+      - DATABASE=ORCLPDB1
+      - USERNAME=SYS
+      - PASSWORD=zaq1xsW2
+      - DB_TYPE=oracle
