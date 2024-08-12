@@ -16,6 +16,7 @@ def execute_query(sql, params, limit=None):
         logging.info(f"參數: {params}")
         
         if conn is not None and 'oracle' in conn.dsn:
+            logging.info(f"run oracle:")
             cursor = conn.cursor()
             cursor.execute(sql, params)
             result = cursor.fetchone()
@@ -25,6 +26,7 @@ def execute_query(sql, params, limit=None):
                 result = cursor.fetchone()
             cursor.close()
         else:
+            logging.info(f"run db2:")
             stmt = ibm_db.prepare(conn, sql)
             
             for i, param in enumerate(params, start=1):
