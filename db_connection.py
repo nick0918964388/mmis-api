@@ -19,11 +19,11 @@ db_type = os.environ.get('DB_TYPE', 'db2')  # 新增環境變數以選擇資料�
 
 def connect_to_oracle():
             dsn = cx_Oracle.makedsn(host, port, service_name=database)  # 使用服務名稱而不是SID
-            connection = cx_Oracle.connect(user=username, password=password, dsn=dsn, mode=cx_Oracle.SYSDBA)  # 使用SYSDBA模式
+            connection = cx_Oracle.connect(user=username, password=password, dsn=dsn)  # 使用SYSDBA模式
             return connection
         
 def get_db_connection():
-    troubleshoot_oracle_connection()
+    #troubleshoot_oracle_connection()
     try:        
         # 根據資料庫類型選擇連接方式
         if db_type == 'oracle':
