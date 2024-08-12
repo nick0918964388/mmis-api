@@ -1,28 +1,42 @@
 import ibm_db
+import cx_Oracle
 from db_connection import get_db_connection
 import logging
 def execute_query(sql, params, limit=None):
     try:
         conn = get_db_connection()
         if limit:
-            sql += f" FETCH FIRST {limit} ROWS ONLY"
+            if conn is not None and 'oracle' in conn.dsn:
+                sql += f" WHERE ROWNUM <= {limit}"
+            else:
+                sql += f" FETCH FIRST {limit} ROWS ONLY"
         
         # 打印SQL語句
-        print(f"執行的SQL語句: {sql}")
-        print(f"參數: {params}")
+        logging.info(f"執行的SQL語句: {sql}")
+        logging.info(f"參數: {params}")
         
-        stmt = ibm_db.prepare(conn, sql)
-        
-        for i, param in enumerate(params, start=1):
-            ibm_db.bind_param(stmt, i, param)
-        
-        ibm_db.execute(stmt)
-        
-        result = ibm_db.fetch_assoc(stmt)
-        data = []
-        while result:
-            data.append(result)
+        if conn is not None and 'oracle' in conn.dsn:
+            cursor = conn.cursor()
+            cursor.execute(sql, params)
+            result = cursor.fetchone()
+            data = []
+            while result:
+                data.append(result)
+                result = cursor.fetchone()
+            cursor.close()
+        else:
+            stmt = ibm_db.prepare(conn, sql)
+            
+            for i, param in enumerate(params, start=1):
+                ibm_db.bind_param(stmt, i, param)
+            
+            ibm_db.execute(stmt)
+            
             result = ibm_db.fetch_assoc(stmt)
+            data = []
+            while result:
+                data.append(result)
+                result = ibm_db.fetch_assoc(stmt)
         
         ibm_db.close(conn)
         
