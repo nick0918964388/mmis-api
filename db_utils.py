@@ -5,8 +5,9 @@ import logging
 def execute_query(sql, params, limit=None):
     try:
         conn = get_db_connection()
+        db_type = os.environ.get('DB_TYPE', 'db2')
         if limit:
-            if conn is not None and 'oracle' in conn.dsn:
+            if db_type == 'oracle':
                 sql += f" WHERE ROWNUM <= {limit}"
             else:
                 sql += f" FETCH FIRST {limit} ROWS ONLY"
@@ -15,7 +16,7 @@ def execute_query(sql, params, limit=None):
         logging.info(f"執行的SQL語句: {sql}")
         logging.info(f"參數: {params}")
         
-        if conn is not None and 'oracle' in conn.dsn:
+        if db_type == 'oracle':
             logging.info(f"run oracle:")
             cursor = conn.cursor()
             cursor.execute(sql, params)
